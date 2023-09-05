@@ -11,7 +11,7 @@ def cria_vetor3(vlist: list) -> np.ndarray:
     :param vlist: Lista com as componentes [vx, vy, vz] do vetor desejado
     :return: np.ndarray: vetor (3, 1) com os valores desejados
     """
-    pass
+    return np.asarray([vlist]).T
 
 
 def checa_vetor3(v: np.ndarray) -> None:
@@ -20,7 +20,8 @@ def checa_vetor3(v: np.ndarray) -> None:
     :param v:
     :return:
     """
-    pass
+    if v.shape != (3, 1):
+        raise ValueError('o vetor deveria ser 3x1')
 
 
 def produto_escalar(v1: np.ndarray, v2: np.ndarray) -> float:
@@ -30,7 +31,10 @@ def produto_escalar(v1: np.ndarray, v2: np.ndarray) -> float:
     :param v2: vetor (np.ndarray) coluna de 3 elementos
     :return: escalar: resultado de v1.v2
     """
-    pass
+    checa_vetor3(v1)
+    checa_vetor3(v2)
+    aux = v1.T @ v2
+    return float(aux[0][0])
 
 
 def norma_vetor(v: np.ndarray) -> float:
